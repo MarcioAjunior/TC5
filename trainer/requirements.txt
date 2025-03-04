@@ -1,0 +1,6 @@
+lightfm==1.16
+pandas
+pyarrow
+fastparquet
+dill
+cloudpickle
