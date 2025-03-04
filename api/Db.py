@@ -41,6 +41,8 @@ class DbManager:
                 cur.execute("SELECT * FROM users WHERE id = %s;", (user_id,))
                 return dict(cur.fetchone()) if cur.rowcount > 0 else {"error": "Usuário não encontrado"}
         if users_ids is not None:
+            if users_ids == []:
+                return []
             with self.conn.cursor(cursor_factory=DictCursor) as cur:
                 cur.execute("SELECT id, nome FROM users WHERE id in %s;", (tuple(users_ids),))
                 return [dict(row) for row in cur.fetchall()]

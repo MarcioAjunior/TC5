@@ -122,13 +122,13 @@ class LightFMTrainer:
 
     @classmethod
     def execute_pipeline(cls, model, db_params, len_train, epochs_train=10, num_threads=1):
-        print(f'len_train na função execute_pipeline: {len_train}')
         train_data = LightFMTrainer.get_data(db_params, model ,len_train)
-        print('-'*50)
-        train_data = LightFMTrainer.get_popularity(train_data)
-        print('-'*50)
-        train_data = LightFMTrainer.normalize_data(train_data, model)
-        print('-'*50)
-        LightFMTrainer.create_interactions_features(train_data, model)
+        if len(train_data) > 10:
+            print('-'*50)
+            train_data = LightFMTrainer.get_popularity(train_data)
+            print('-'*50)
+            train_data = LightFMTrainer.normalize_data(train_data, model)
+            print('-'*50)
+            LightFMTrainer.create_interactions_features(train_data, model)
 
         return True
