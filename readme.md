@@ -26,6 +26,11 @@ Para realização do trabalho, foram desenvolvidos notebooks para exploração d
 
 ### Arquitetura
 
+A arquitetura pensada para resolver o problema em questão esta representada ana imagem abaixo.
+
+![Arquitetura do trabalho](TC5_arch_drawio.png)
+
+
 ```bash
   npm install my-project
   cd my-project
