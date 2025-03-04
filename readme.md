@@ -30,8 +30,7 @@ A arquitetura pensada para resolver o problema em questão esta representada ana
 
 ![Arquitetura do trabalho](TC5_arch_drawio.png)
 
+### Como funciona
 
-```bash
-  npm install my-project
-  cd my-project
-```
+### Como reproduzir o experimento
+
