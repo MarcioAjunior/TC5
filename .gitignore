@@ -180,5 +180,4 @@ cython_debug/
 /app/data
 /trainer/load_data
 /trainer/custom_model.pkl
-/docker-compose_prod.yaml
 /api/utils/custom_model.pkl

@@ -27,17 +27,7 @@ services:
     tty: true
     depends_on:
       - sanctum
-    
-
-  trainer:
-    build: ./trainer
-    container_name: trainer
-    volumes:
-      - ./trainer:/home/lightfm
-    tty: true
-    depends_on:
-      - sanctum
-
+  
   app:
     build: ./app
     container_name: app
@@ -48,9 +38,15 @@ services:
     depends_on:
       - api
       - sanctum
+
+  trainer:
+    build: ./trainer
+    container_name: trainer
     volumes:
-      - ./app:/app
-      - ./app/node_modules:/app/node_modules
+      - ./trainer:/home/lightfm
+    tty: true
+    depends_on:
+      - sanctum
 
 networks:
   tc5:

@@ -21,7 +21,7 @@ ADD . /home/lightfm/
 
 WORKDIR /home/lightfm
 
-ADD requirements.txt /home/lightfm/
+COPY . /home/lightfm/
 
 RUN pip3 install -r requirements.txt
 
