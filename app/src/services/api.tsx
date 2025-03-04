@@ -2,14 +2,18 @@ import axios from 'axios';
 
 let api_url = process.env.API; 
 
+if (api_url === undefined) {
+  api_url = "http://127.0.0.1:8001";
+}
 export const fetchUsuarios = async () => {
-  
-  if (api_url === undefined) {
-    api_url = "http://localhost:8001";
-  }
+
+  console.log(api_url + '/users');
+
+
 
   try {
-    const response = await axios.get(api_url+ '/users');
+    const response = await axios.get(api_url+'/users');
+    console.log(api_url + '/users');
     return response.data.users;
   } catch (error) {
       console.error('Erro ao buscar usuários:', error);
@@ -19,10 +23,6 @@ export const fetchUsuarios = async () => {
 
 export const postUsuario = async (usuario: any) => {
   
-  if (api_url === undefined) {
-    api_url = "http://localhost:8001";
-  }
-
   try {
     const response = await axios.post(api_url + '/add_user', usuario);
     return true;
@@ -34,10 +34,6 @@ export const postUsuario = async (usuario: any) => {
 
 export const postNoticia= async (noticia: any) => {
   
-  if (api_url === undefined) {
-    api_url = "http://localhost:8001";
-  }
-
   try {
     const response = await axios.post(api_url + '/add_news', noticia);
     return true;
