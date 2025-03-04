@@ -14,15 +14,17 @@ O presente repositório e a entraga do Datathon, atividade de Quinta fase do cur
  - Salvar o modelo.
  - Criar uma API para servir o modelo, realizando previsões.
  - Empacotamento com docker.
- - Teste e validação da API
- - Monitoramento da API.
- - Monitoramento do modelo.
- - Deploy em ambiente produtivo.
 
 
-## Instalação
+## Sobre este trabalho
 
-Instale my-project com npm
+Para realização do trabalho, foram desenvolvidos notebooks para exploração dos dados, criação do dataser de treinamento, treinamento e validação e criação do modelo final. Os notebooks utilizados estão no pasta [notebooks](./notebooks) deste repositório. Para criação do modelo foi utilizada a biblioteca [LightFM](https://making.lyst.com/lightfm/docs/home.html) usada para criar sistemas de recomendação hibridos, Além disso foi criado um MVP para exemplificar a abordagem escolhidas para solucionar a atividade proposta.
+
+
+### Video explicativo
+
+
+### Arquitetura
 
 ```bash
   npm install my-project
