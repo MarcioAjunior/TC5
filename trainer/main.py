@@ -139,7 +139,7 @@ if __name__ == "__main__":
     dataset = Dataset()
     dataset.fit(
         users=train_data['user_encoded'].unique(),
-        user_features=[f"emb_{i}" for i in range(embedding_dim_news_train)],
+        user_features=[f"emb_{i}" for i in range(embedding_dim_users_train)],
         items=train_data['news_encoded'].unique(),
         item_features=[f"emb_{i}" for i in range(embedding_dim_news_train)] + ['recency'] + ['popularity'],
     )

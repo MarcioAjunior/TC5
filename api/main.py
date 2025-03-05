@@ -85,7 +85,8 @@ async def predict(r: PredictionRequest):
                     list(custom_model.more_recency),
                     r.qtty_recommendations
                 ) if item is not None]
-        
+            
+        #Exploração
         if len(custom_model.more_recency) > 0 :
             predictions = [item for item in 
                             list(
@@ -167,7 +168,7 @@ def read_news(r : ReadRequest):
             user_id = generate_hashed_id(nome)
             db.add_user(user_id, nome, [0] * 50)
             
-            
+        # gerando um exemplo de score de engajamento    
         engagement_score = (round(np.random.rand(), 6) / 100)
         
         if user_embedding == [0] * 50 or user_embedding is None:
@@ -197,7 +198,7 @@ def read_news(r : ReadRequest):
 
 @app.get("/users")
 async def users():
-    """Retorna os últimos 5 usuários treinados."""
+    """Retorna os últimos X usuários treinados."""
     
     last_users = list(custom_model.user_encoder.classes_)[-NUMBER_OF_USERS:]
     
@@ -205,18 +206,6 @@ async def users():
 
     return {"users": users_data}
 
-   
-@app.post("/tester")
-def teste():
-    print('MAIS POPULARES')
-    print(custom_model.more_popularity)
-    print('IDS USUARIOS')
-    print(custom_model.user_encoder.classes_)
-    print('IDS NOTICIAS')
-    print(custom_model.news_encoder.classes_)
-    print('MATRIZ DE INTERAÇÕES')
-    print(custom_model.interactions)
-    print(custom_model.more_recency)
 
 if __name__ == "__main__":
     import uvicorn
