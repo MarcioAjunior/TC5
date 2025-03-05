@@ -110,6 +110,11 @@ class LightFMTrainer:
         model.user_features = user_features_train
         model.item_features = item_features_train
         
+        top_news = train_data.sort_values(by='popularity_score', ascending=False).head(10)
+        top_news.reset_index(drop=True, inplace=True)
+                
+        model.more_popularity = top_news['newsId'].tolist()
+        
         model.fit(
             interactions_train,
             user_features=user_features_train,
