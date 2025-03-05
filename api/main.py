@@ -74,6 +74,7 @@ def run_training(model, db_params, len_train=10000):
 @app.post("/predict")
 async def predict(r: PredictionRequest): 
     """Faz uma predição para o usuário informado."""
+    
     if custom_model.state == 'ACTIVE':
         if (r.user_id not in list(custom_model.user_encoder.classes_) or r.use_heuristic):
             
@@ -84,7 +85,6 @@ async def predict(r: PredictionRequest):
                 ) if item is not None]
             
             prediction = db.get_news(news_ids=ids_recomendation)
-            
             return {"prediction": prediction}
             
         #Exploração

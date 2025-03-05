@@ -55,9 +55,6 @@ class DbManager:
                 return dict(cur.fetchone()) if cur.rowcount > 0 else {"error": "Notícia não encontrada"}
             elif news_ids:
                 cur.execute("SELECT id, titulo, subtitulo, url FROM news WHERE id in %s;", (tuple(news_ids),))
-                results = cur.fetchall()
-                print(results, 'CCCCCCCCCCCCCCCC')
-                print(news_ids, 'DDDDDDDDDDDDDDD')
                 return [dict(row) for row in cur.fetchall()]
             else:
                 cur.execute(f"SELECT id FROM news ORDER BY data_publicacao DESC LIMIT {qtty_news};")
