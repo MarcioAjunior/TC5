@@ -32,5 +32,34 @@ A arquitetura pensada para resolver o problema em questão esta representada ana
 
 ### Como funciona
 
+Os dados foram fornecidos para analise através de um conjunto de CSV(s), contendo notícias, acessos de usuarios a essas notícias. Com isso foram desenvolvidos notebooks para análise exploratória, onde também foi desenvolvida a modelagem. Com isso foi possível criar um ponto de iniciada do banco de dados, para que o memso não seja iniciado vazio, foi possível também desenovolver parquets que foram utilizados para a modelagem.
+Para a modelagem foi montado um container chamado Trainer, reponsável por criar o PKL do modelo final. Este PKL engloba a classe do model já treinado e, com ele gerado, foi possível desenvolver a API, que é utulizado para servir o modelo, interagindo com obanco de dados e com o próprio modelo. Ao servir o modelo de recomendação em uma API foi possível desenvolver uma aplicação exemplificativa do funcionamento do ciclo de recomendação, permitindo assim motrar como features são utilizadas, atualizadas e como a interação entre usuarios e notícias foi realizado.
+
+### Abordagem escolhida para o modelo
+
+A abordagem escolhida para o desenvolvimento do modelo de recomendações foi a definição do gosto do usuário por embedding. Tratando também os itens/notícias como embeddings também. Para isso ser aplicado na modelagem foi necessário realizar algumas [engenharias de features](https://www.ibm.com/br-pt/think/topics/feature-engineering) sendo essas transformações:
+
+- Tranformação do texto do título da notícia em um [embeddings](https://www.cloudflare.com/pt-br/learning/ai/what-are-embeddings/)(representação vetorial do texto).
+- Transformação das features de: número de clicks na página, contagem de vezes que a página foi visitada, porcentagem de scroll da página e tempo na página em um score de engajamento sobre a notícia.
+- Acrecimo da feature do gosto do usuário com embeddings.
+
+Dessa forma foi possível inferir o gosto de um usuário, ponderando sua interação com a notícia com o seu score de engajamento, definindo o qual relevante aquela notíca é com base no seu histórico de acessos.
+Os embeddings foram criados com TFIDF, permitindo que essa reomendação seja próxima a utiliza em abordagem como [similaridade do cosseno](https://arturlunardi.medium.com/entendendo-sistemas-de-recomenda%C3%A7%C3%A3o-c50a20856394) e passando essa responsábilidade do calculo da feature para o modelo LightFM.
+
+Dessa forma foi possível realizado o que é proposto pelo LightFM, um modelo híbrido que considera a recencia de uma notícia, assim como sua popularida e o quao próximo o embedding dessa notícia é próximo ao embedding do usuário em questão.
+
+### Sobre as aplicações
+
+A arquitetura dispoem de 4 serviços principais, sendo elas:
+
+1 - **Banco de dados**. Utilizado para armazenar a novas interações, e as utilizadas no treinamento, é também a fonte dos dados caso haja a necessidade de um retreinamento e armazena além das interações, novas notícias e usuários. Tratase de um banco relacional postgres.
+2 - **Trainer**. Conteiner de trinamento do modelo, utiliza os parquets gerados previamente para criar um PKL do modelo, e tem como única finalidade realizar esse treinamento.
+3 - **API**. A api é a forma escolhida para servir o modelo, utilizando de uma arquitetura REST comum, interagindo com o modelo previamente criado como uma classe. É responsável por receber as chamadas de predição, leitura de uma notícia, criação de usuarios e notícias e interações com o APP.
+4 - **APP**. Aplicação react/next responsável por ser exemplificativa de como a api serve o modelo, é uma demonstração simples de como um site de notícias poderia utilizar-se do modelo.
+
 ### Como reproduzir o experimento
+
+
+
+### Próximos passos
 
