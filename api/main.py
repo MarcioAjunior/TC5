@@ -25,8 +25,6 @@ DB_PARAMS = {
     "port" : os.getenv("PORT")
 }
 
-NUMBER_OF_USERS = 12
-
 PATH_UTILS = os.path.dirname(os.path.abspath(__file__)) + '/utils'
 db = DbManager(dict_connection=DB_PARAMS)
 
@@ -78,10 +76,10 @@ async def predict(r: PredictionRequest):
     """Faz uma predição para o usuário informado."""
     if custom_model.state == 'ACTIVE':
         if (r.user_id not in list(custom_model.user_encoder.classes_) or r.use_heuristic):
-            print(list(custom_model.more_popularity.values()))
+            print(list(custom_model.more_popularity))
             
             ids_recomendation = [item for item in mix_recommendations(
-                    list(custom_model.more_popularity.values()),
+                    list(custom_model.more_popularity),
                     list(custom_model.more_recency),
                     r.qtty_recommendations
                 ) if item is not None]
@@ -130,7 +128,7 @@ async def add_user(r: UserRequest):
         embedding = [0] * 50
         
         db.add_user(user_id, r.nome, embedding)
-        custom_model.add_user(user_id)
+        custom_model.news_users.appendleft(user_id)
         
         return {"user": user_id}
     
@@ -200,9 +198,9 @@ def read_news(r : ReadRequest):
 async def users():
     """Retorna os últimos X usuários treinados."""
     
-    last_users = list(custom_model.user_encoder.classes_)[-NUMBER_OF_USERS:]
-    
-    users_data = db.get_user(user_id=None ,users_ids=last_users)
+    list_user = list(custom_model.news_users)[-10:] + list(custom_model.user_encoder.classes_)[-12:]
+        
+    users_data = db.get_user(user_id=None ,users_ids=list_user)
 
     return {"users": users_data}
 

@@ -35,8 +35,10 @@ if __name__ == "__main__":
             self.user_features = None
             self.item_features = None
 
-            self.more_popularity = None
+            self.more_popularity = []
             self.more_recency = deque(maxlen=10)
+            
+            self.news_users = deque(maxlen=10)
 
             self.state = 'ACTIVE'
 
@@ -87,7 +89,7 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 print('RETORNANDO NOTICIAS POPULARES PARA O USUARIO')
-                return self.more_popularity.values()
+                return self.more_popularity
     
     model = CustomLightFM()
     
@@ -184,14 +186,8 @@ if __name__ == "__main__":
     
     top_news = train_data[['newsId', 'news_encoded', 'popularity_score']].head(10)
     top_news.reset_index(drop=True, inplace=True)
-    
-    more_popularity = dict().fromkeys(range(10))
-    
-    for i, item  in  top_news.iterrows():
-        if item['newsId'] not in list(more_popularity.values()):
-            more_popularity[i] = item['newsId']
-        
-    model.more_popularity = dict(more_popularity)
+                
+    model.more_popularity = top_news['newsId'].tolist()
         
     try:
         with open(f'{PATH_MODEL}custom_model.pkl', 'wb') as file:

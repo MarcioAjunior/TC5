@@ -44,7 +44,7 @@ class DbManager:
             if users_ids == []:
                 return []
             with self.conn.cursor(cursor_factory=DictCursor) as cur:
-                cur.execute("SELECT id, nome FROM users WHERE id in %s;", (tuple(users_ids),))
+                cur.execute("SELECT id, nome FROM users WHERE id in %s ORDER BY 2;", (tuple(users_ids),))
                 return [dict(row) for row in cur.fetchall()]
 
     def get_news(self, qtty_news = 1000, news_id: str = None, news_ids: list = None) -> Dict:
