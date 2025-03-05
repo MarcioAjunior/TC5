@@ -1,4 +1,4 @@
-# API FastAPI
+# API
 
 Este repositório contém uma API desenvolvida com **FastAPI** para servir um modelo de recomendação de notícias.
 A API se conecta a um banco de dados PostgreSQL utilizando **psycopg2** e expõe diversas rotas definidas no arquivo `main.py`.
