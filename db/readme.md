@@ -1,8 +1,8 @@
-# Contêiner de banco de dados PostgreSQL
-
-![Deer Database Logo](DEER.png)
+# Contêiner de banco de dados PostgreSQL(Sanctum)
 
 Este serviço executa uma instância de banco de dados conforme o DEER. Esta é forma como a api esta configurada para funcionar em conjunto com o modelo.
+
+![Deer Database Logo](DEER.png)
 
 ## Tabelas
 - `news`: Armazena as notícias prévias do treinamento do modelo e as cadastradas através do APP/API.
@@ -25,7 +25,7 @@ Este serviço executa uma instância de banco de dados conforme o DEER. Esta é 
 ### Variáveis ​​de ambiente
 
 ```env
-POSTGRES_USER=seu_usuário
+POSTGRES_USER=user
 POSTGRES_PASSWORD=pass
 POSTGRES_DB=db
 ```
