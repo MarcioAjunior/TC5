@@ -52,16 +52,16 @@ Dessa forma foi possível realizado o que é proposto pelo LightFM, um modelo h�
 
 A arquitetura dispõe de quatro serviços principais, sendo eles:  
 
-1. **Banco de Dados**  
+1. [**Banco de Dados**](./db)  
    Utilizado para armazenar novas interações e as utilizadas no treinamento. Também é a fonte de dados caso haja necessidade de um retreinamento e armazena, além das interações, novas notícias e usuários. Trata-se de um banco relacional PostgreSQL.  
 
-2. **Trainer**  
+2. [**Trainer**](./trainer)  
    Contêiner responsável pelo treinamento do modelo. Utiliza os arquivos Parquet gerados previamente para criar um arquivo PKL do modelo, tendo como única finalidade realizar esse treinamento.  
 
-3. **API**  
+3. [**API**](./api)  
    A API é a forma escolhida para servir o modelo, utilizando uma arquitetura REST comum. Ela interage com o modelo previamente criado como uma classe e é responsável por processar chamadas de predição, registrar leituras de notícias, criar usuários e notícias, além de interagir com o aplicativo.  
 
-4. **APP**  
+4. [**APP**](./app)  
    Aplicação em React/Next.js desenvolvida para exemplificar como a API serve o modelo. Trata-se de uma demonstração simples de como um site de notícias poderia se beneficiar do modelo.  
 
 Dentro de cada pasta, nomeada com o nome do serviço, há um arquivo README.md com mais detalhes sobre o serviço.
