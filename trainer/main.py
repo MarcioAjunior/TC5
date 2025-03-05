@@ -184,11 +184,18 @@ if __name__ == "__main__":
         user_features=user_features_train
     )
     
-    top_news = train_data[['newsId', 'news_encoded', 'popularity_score']].head(10)
-    top_news.reset_index(drop=True, inplace=True)
-                
+    top_news = (
+        train_data[['newsId', 'news_encoded', 'popularity_score']]
+        .drop_duplicates(subset=['newsId'])
+        .head(10)
+        .reset_index(drop=True)
+    )
+    
     model.more_popularity = top_news['newsId'].tolist()
-        
+    
+    print('Calculando os mais populares...')
+    print(model.more_popularity)
+                
     try:
         with open(f'{PATH_MODEL}custom_model.pkl', 'wb') as file:
             cp.dump(model, file)

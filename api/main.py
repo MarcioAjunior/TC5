@@ -76,13 +76,16 @@ async def predict(r: PredictionRequest):
     """Faz uma predição para o usuário informado."""
     if custom_model.state == 'ACTIVE':
         if (r.user_id not in list(custom_model.user_encoder.classes_) or r.use_heuristic):
-            print(list(custom_model.more_popularity))
             
             ids_recomendation = [item for item in mix_recommendations(
                     list(custom_model.more_popularity),
                     list(custom_model.more_recency),
                     r.qtty_recommendations
                 ) if item is not None]
+            
+            prediction = db.get_news(news_ids=ids_recomendation)
+            
+            return {"prediction": prediction}
             
         #Exploração
         if len(custom_model.more_recency) > 0 :
@@ -207,4 +210,6 @@ async def users():
 
 if __name__ == "__main__":
     import uvicorn
+    import time
+    time.sleep(8)
     uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -68,7 +68,29 @@ Dentro de cada pasta, nomeada com o nome do serviço, há um arquivo README.md c
 
 ### Como reproduzir o experimento
 
+Para reproduzir o experimento, é necessário ter o Docker e o Docker Compose instalados. e utilizar-se do docker compose **docker-compose_prod.yaml** para executa-los, paralelamente é possível utilizar o docker compose **docker-compose.yaml** para executar os serviços em modo de desenvolvimento. permitindo alterações s em tempo real.
 
+1. **Clone o repositório**:
+   Primeiro, você precisa clonar o repositório para a sua máquina local. Execute o seguinte comando no terminal:
+
+   ```bash
+   git clone https://github.com/MarcioAjunior/TC5.git
+   ```
+2. **Execute o Docker Compose**:
+   Para construir e iniciar os serviços definidos no arquivo `docker-compose_prod.yaml`, execute o seguinte comando:
+
+   ```bash
+   docker-compose -f docker-compose_prod.yaml --build
+   ```
 
 ### Próximos passos
+
+O projeto ainda está em desenvolvimento e há várias melhorias a serem feitas. Aqui estão algumas das melhorias que podem ser implementadas:
+
+- [ ] Criar um arquivo de configuração para o treinamento do modelo.
+- [ ] Refinar momento de treinamento do modelo, agendadando uma tarefa para treinar o modelo periodicamente.
+- [ ] Capturar métricas de desempenho do modelo.
+- [ ] Campturar métricas de desemprenho da API.
+- [ ] Capturar score de engajamento de forma implicita.
+- [ ] Criar pipeine de CI/CD.
 

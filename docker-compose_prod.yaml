@@ -17,8 +17,6 @@ services:
     container_name: api
     ports:
       - "8001:8000"
-    volumes:
-      - ./api:/home/lightfm
     env_file:
       - ./api/prod.env
     tty: true
@@ -39,8 +37,6 @@ services:
   trainer:
     build: ./trainer
     container_name: trainer
-    volumes:
-      - ./trainer:/home/lightfm
     tty: true
     depends_on:
       - sanctum
