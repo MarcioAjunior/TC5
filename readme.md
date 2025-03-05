@@ -48,14 +48,22 @@ Os embeddings foram criados com TFIDF, permitindo que essa reomendação seja pr
 
 Dessa forma foi possível realizado o que é proposto pelo LightFM, um modelo híbrido que considera a recencia de uma notícia, assim como sua popularida e o quao próximo o embedding dessa notícia é próximo ao embedding do usuário em questão.
 
-### Sobre as aplicações
+### Sobre as Aplicações  
 
-A arquitetura dispoem de 4 serviços principais, sendo elas:
+A arquitetura dispõe de quatro serviços principais, sendo eles:  
 
-1 - **Banco de dados**. Utilizado para armazenar a novas interações, e as utilizadas no treinamento, é também a fonte dos dados caso haja a necessidade de um retreinamento e armazena além das interações, novas notícias e usuários. Tratase de um banco relacional postgres.
-2 - **Trainer**. Conteiner de trinamento do modelo, utiliza os parquets gerados previamente para criar um PKL do modelo, e tem como única finalidade realizar esse treinamento.
-3 - **API**. A api é a forma escolhida para servir o modelo, utilizando de uma arquitetura REST comum, interagindo com o modelo previamente criado como uma classe. É responsável por receber as chamadas de predição, leitura de uma notícia, criação de usuarios e notícias e interações com o APP.
-4 - **APP**. Aplicação react/next responsável por ser exemplificativa de como a api serve o modelo, é uma demonstração simples de como um site de notícias poderia utilizar-se do modelo.
+1. **Banco de Dados**  
+   Utilizado para armazenar novas interações e as utilizadas no treinamento. Também é a fonte de dados caso haja necessidade de um retreinamento e armazena, além das interações, novas notícias e usuários. Trata-se de um banco relacional PostgreSQL.  
+
+2. **Trainer**  
+   Contêiner responsável pelo treinamento do modelo. Utiliza os arquivos Parquet gerados previamente para criar um arquivo PKL do modelo, tendo como única finalidade realizar esse treinamento.  
+
+3. **API**  
+   A API é a forma escolhida para servir o modelo, utilizando uma arquitetura REST comum. Ela interage com o modelo previamente criado como uma classe e é responsável por processar chamadas de predição, registrar leituras de notícias, criar usuários e notícias, além de interagir com o aplicativo.  
+
+4. **APP**  
+   Aplicação em React/Next.js desenvolvida para exemplificar como a API serve o modelo. Trata-se de uma demonstração simples de como um site de notícias poderia se beneficiar do modelo.  
+
 
 ### Como reproduzir o experimento
 
