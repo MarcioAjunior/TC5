@@ -11,7 +11,7 @@ Este serviço executa uma instância de banco de dados conforme o DEER. Esta é 
 
 ## Recursos
 
-- Versão 16 do PostgreSQL
+- Versão 16 do PostgreSQL em uma imagem pré-configurada
 - Pré-configurado para uso imediato
 - Armazenamento de dados persistente
 
