@@ -64,6 +64,7 @@ A arquitetura dispõe de quatro serviços principais, sendo eles:
 4. **APP**  
    Aplicação em React/Next.js desenvolvida para exemplificar como a API serve o modelo. Trata-se de uma demonstração simples de como um site de notícias poderia se beneficiar do modelo.  
 
+Dentro de cada pasta, nomeada com o nome do serviço, há um arquivo README.md com mais detalhes sobre o serviço.
 
 ### Como reproduzir o experimento
 
