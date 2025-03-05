@@ -181,3 +181,7 @@ cython_debug/
 /trainer/load_data
 /trainer/custom_model.pkl
 /api/utils/custom_model.pkl
+/data/parquets/df_access.parquet
+/data/parquets/df_news.parquet
+/data/parquets/df_users.parquet
+/notebooks/parquets
